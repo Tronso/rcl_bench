@@ -9,6 +9,8 @@ d <- read.csv(csv_path)
 
 d$timestamp <- d$timestamp / 1000
 d$timestamp <- as.POSIXct(d$timestamp, origin="1970-01-01")
+t_init <- d$timestamp[1]
+d$timestamp <- difftime(d$timestamp, t_init, units="secs")
 d$microseconds[d$microseconds < 500] <- 501
 
 ggplot(d, aes(x=timestamp,y=microseconds)) + 
