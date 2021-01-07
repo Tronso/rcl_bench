@@ -17,6 +17,8 @@ d$timestamp <- as.POSIXct(d$timestamp, origin="1970-01-01")
 d$tc <- cut(d$timestamp, breaks = "1 sec")
 d = count(d, unit, tc)
 d$tc <- as.POSIXct(d$tc, format="%Y-%m-%d %H:%M:%S")
+t_init <- d$tc[1]
+d$tc <- difftime(d$tc, t_init, units="secs")
 
 ggplot(d, aes(x=tc, y=n)) + 
 	geom_point(size=1)  +
