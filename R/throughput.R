@@ -20,10 +20,8 @@ d$tc <- as.POSIXct(d$tc, format="%Y-%m-%d %H:%M:%S")
 t_init <- d$tc[1]
 d$tc <- difftime(d$tc, t_init, units="secs")
 
-plot <- ggplot(d, aes(x=tc, y=n)) + 
+ggplot(d, aes(x=tc, y=n)) + 
 	geom_point(size=1)  +
 	geom_smooth() +
 	labs(title=paste(op_name, "throughput"), x = "Time", y = "Operations per second")
-pdf(img_path)
-print(plot)
-dev.off()
+ggsave(imgpath)

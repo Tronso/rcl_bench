@@ -13,11 +13,9 @@ t_init <- d$timestamp[1]
 d$timestamp <- difftime(d$timestamp, t_init, units="secs")
 d$microseconds[d$microseconds < 500] <- 501
 
-plot <- ggplot(d, aes(x=timestamp,y=microseconds)) + 
+ggplot(d, aes(x=timestamp,y=microseconds)) + 
 	geom_point(size=0.3, stroke=0) + 
 	geom_smooth() + 
 	scale_y_log10(breaks=c(500,1000,10000,102997,105000), limits = c(500,105000), expand = c(0, 0)) +
 	labs(title=paste(op_name, "latency"), x="Time in seconds",  y="Latency in microseconds")
-pdf(img_path)
-print(plot)
-dev.off()
+ggsave(img_path)
