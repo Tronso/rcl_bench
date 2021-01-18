@@ -24,4 +24,4 @@ ggplot(d, aes(x=tc, y=n)) +
 	geom_point(size=1)  +
 	geom_smooth() +
 	labs(title=paste(op_name, "throughput"), x = "Time", y = "Operations per second")
-ggsave(imgpath)
+ggsave(img_path)
